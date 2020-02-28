@@ -5,12 +5,11 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 //自定义全局过滤器需要实现GlobalFilter和Ordered接口
-@Component
+//@Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     //完成判断逻辑
