@@ -11,7 +11,8 @@
 		<module>shop-user</module>
 		<module>shop-product</module>
 		<module>shop-order</module>
-	</modules>
+        <module>api-gateway</module>
+    </modules>
 	<name>cloud-alibaba-study</name>
 	<description>Spring Cloud Alibaba学习</description>
 

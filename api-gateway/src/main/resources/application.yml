@@ -1,0 +1,32 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 将gateway注册到nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 让gateway从nacos中获取服务信息
+      routes:
+        - id: product_route
+          uri: lb://service-product
+#          uri: http://127.0.0.1:8081
+          order: 1
+          predicates: # 断言，当路由满足全部断言时进行转发
+            - Path=/product-serv/**
+#            - Age=18,60
+          filters:  # 过滤器
+            - StripPrefix=1 # 删除一级路径
+#            - Log=true,false # 控制日志是否开启
+
+#        - id: order_route
+#          uri: lb://service-order
+#          order: 1
+#          predicates:
+#            - Path=/order-serv/**
+#          filters:
+#            - StripPrefix=1
