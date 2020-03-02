@@ -15,4 +15,9 @@ public class ProductServiceFallback implements ProductClient {
         product.setPname("商品微服务调用出现异常了,已经进入到了容错方法中");
         return product;
     }
+
+    @Override
+    public void reduceInventory(Integer pid, Integer number) {
+
+    }
 }

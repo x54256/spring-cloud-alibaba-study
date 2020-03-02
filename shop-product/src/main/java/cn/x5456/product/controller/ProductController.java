@@ -5,8 +5,10 @@ import cn.x5456.common.Product;
 import cn.x5456.product.dao.ProductDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,6 +25,16 @@ public class ProductController {
         Product product = productDao.findById(pid).get();
         log.info("商品信息查询成功,内容为{}", JsonUtils.toString(product));
         return product;
+    }
+
+    @Transactional
+    @RequestMapping("/product/reduceInventory")
+    public void reduceInventory(@RequestParam("pid") Integer pid, @RequestParam("num") Integer num) {
+        Product product = productDao.findById(pid).get();
+        product.setStock(product.getStock() - num);
+        productDao.save(product);
+
+//        int i = 1 / 0;
     }
 
 }
